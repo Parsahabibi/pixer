@@ -17,6 +17,7 @@ import { UserFollowingIcon } from '@/components/icons/user-following-icon';
 import { useMe } from '@/data/user';
 import { FeedIcon } from '@/components/icons/feed-icon';
 import { useTranslation } from 'next-i18next';
+import {useRouter} from "next/router";
 
 interface NavLinkProps {
   href: string;
@@ -61,8 +62,16 @@ export function Sidebar({
 }) {
   const { t } = useTranslation('common');
 
+
+
+  const { locale } = useRouter();
+
+
+  const dir = locale === 'ar' || locale === 'he' || locale === 'fa' ? 'rtl' : 'ltr';
+
   return (
     <aside
+        dir={dir}
       className={cn(
         'h-full flex-col justify-between overflow-y-auto border-r border-light-400 bg-light-100 text-dark-900 dark:border-0 dark:bg-dark-200',
         isCollapse ? 'sm:w-60 xl:w-[75px]' : 'sm:w-[75px] xl:w-60',

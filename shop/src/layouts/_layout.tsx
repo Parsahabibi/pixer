@@ -6,6 +6,7 @@ import Header from '@/layouts/_header';
 import { Sidebar } from '@/layouts/_layout-sidebar';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 import { useIsMounted } from '@/lib/hooks/use-is-mounted';
+import {useRouter} from "next/router";
 const BottomNavigation = dynamic(() => import('@/layouts/_bottom-navigation'), {
   ssr: false,
 });
@@ -17,6 +18,13 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
   function toggleSidebar() {
     setCollapse((prev) => !prev);
   }
+
+  const { locale } = useRouter();
+
+
+  const dir = locale === 'ar' || locale === 'he' || locale === 'fa' ? 'rtl' : 'ltr';
+
+
   return (
     <motion.div
       initial="exit"
@@ -29,7 +37,7 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
         showHamburger={true}
         onClickHamburger={toggleSidebar}
       />
-      <div className="flex flex-1">
+      <div dir={dir} className="flex flex-1">
         <Sidebar isCollapse={collapse} />
         <main
           className={cn(
