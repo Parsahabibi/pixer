@@ -1,0 +1,60 @@
+/* RC Pagination */
+.rc-pagination {
+  @apply flex flex-wrap items-center space-x-2 space-y-2 rtl:space-x-reverse;
+}
+
+.rc-pagination.rc-pagination-simple {
+  @apply space-x-4 rtl:space-x-reverse;
+}
+
+.rc-pagination .rc-pagination-item {
+  @apply flex h-5 w-5 min-w-0 items-center justify-center rounded border-0 bg-transparent text-dark hover:bg-light-400 focus:bg-light-500 dark:text-light dark:hover:bg-dark-600 dark:focus:bg-dark-600;
+}
+.rc-pagination .rc-pagination-prev,
+.rc-pagination .rc-pagination-next,
+.rc-pagination.rc-pagination-simple .rc-pagination-prev,
+.rc-pagination.rc-pagination-simple .rc-pagination-next {
+  @apply m-0 mt-2 flex items-center font-body text-13px capitalize leading-none text-dark hover:text-brand dark:text-light dark:hover:text-brand;
+}
+
+.rc-pagination .rc-pagination-prev.rc-pagination-disabled,
+.rc-pagination .rc-pagination-next.rc-pagination-disabled {
+  @apply text-dark-900 hover:text-dark-900 dark:text-light-900 hover:dark:text-light-900;
+}
+
+.rc-pagination .rc-pagination-prev svg,
+.rc-pagination .rc-pagination-next svg {
+  @apply h-4 w-4;
+}
+
+.rc-pagination .rc-pagination-item a {
+  @apply -mt-[1px] block shrink-0 p-1 font-body text-13px leading-none text-dark dark:text-light/80;
+}
+
+.rc-pagination .rc-pagination-item:focus a,
+.rc-pagination .rc-pagination-item:hover a {
+  @apply text-brand;
+}
+
+.rc-pagination .rc-pagination-jump-prev button,
+.rc-pagination .rc-pagination-jump-next button {
+  @apply h-8 tracking-wide text-dark after:tracking-[2px] after:content-['•••'] hover:text-light focus:outline-none focus:ring-0 focus:ring-brand dark:text-light/80;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active {
+  @apply bg-brand font-semibold text-light hover:bg-brand focus:bg-brand;
+}
+
+.rc-pagination .rc-pagination-item.rc-pagination-item-active a {
+  @apply font-semibold text-light hover:text-light focus:text-light;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager {
+  @apply flex items-center font-body text-13px text-dark dark:text-light;
+}
+
+.rc-pagination .rc-pagination-options .rc-pagination-options-quick-jumper input,
+.rc-pagination.rc-pagination-simple .rc-pagination-simple-pager input {
+  @apply h-8 rounded bg-light-500 px-2 font-body text-13px text-dark hover:border-brand focus:border-brand focus:outline-none focus:ring-transparent dark:border-dark-600 dark:bg-dark-600 dark:text-light;
+}

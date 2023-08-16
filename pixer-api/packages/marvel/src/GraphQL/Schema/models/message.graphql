@@ -1,0 +1,40 @@
+extend type Query {
+    messages(
+        orderBy: String
+        sortedBy: String
+        conversation_id: ID!
+    ): [Message]
+    @paginate(
+        builder: "Marvel\\GraphQL\\Queries\\MessageQuery@fetchMessages"
+        defaultCount: 15
+    )
+}
+
+
+type Message {
+    id: ID!
+    user_id: ID!
+    user: User @belongsTo
+    conversation_id: ID!
+    conversation: Conversation @belongsTo
+    body: String
+    created_at: String
+    updated_at: String
+}
+
+
+input CreateMessageInput {
+    conversation_id: ID! @rules(apply: ["required", "exists:conversations,id"])
+    message: String! @rules(apply: ["required", "string"])
+}
+
+input SeenMessageInput {
+    conversation_id: ID! @rules(apply: ["required", "exists:conversations,id"])
+}
+
+extend type Mutation {
+    seenMessage(input: SeenMessageInput! @spread): Int
+        @field(resolver: "MessageMutator@seenMessage")
+    createMessage(input: CreateMessageInput! @spread): Message
+        @field(resolver: "MessageMutator@store")
+}

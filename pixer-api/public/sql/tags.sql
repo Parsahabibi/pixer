@@ -1,0 +1,17 @@
+INSERT INTO `tags` (`id`, `name`, `slug`, `icon`, `image`, `details`, `type_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'WooCommerce', 'woocommerce', NULL, '[]', NULL, 3, '2022-01-22 14:07:38', '2022-01-22 17:18:46', NULL),
+(2, 'E-commerce', 'ecommerce', NULL, '[]', NULL, 3, '2022-01-22 14:08:06', '2022-02-12 12:21:44', NULL),
+(3, 'Elementor', 'elementor', NULL, '[]', NULL, 3, '2022-01-22 14:08:15', '2022-01-22 17:22:41', NULL),
+(4, 'Laravel', 'laravel', NULL, '[]', NULL, 3, '2022-01-22 14:08:28', '2022-01-22 17:22:30', NULL),
+(5, 'Blog', 'blog', NULL, '[]', NULL, 3, '2022-01-22 14:10:22', '2022-01-22 17:22:04', NULL),
+(6, 'Magazine', 'magazine', NULL, '[]', NULL, 3, '2022-01-22 14:10:34', '2022-01-22 17:21:56', NULL),
+(7, 'Multipurpose', 'multipurpose', NULL, '[]', NULL, 3, '2022-01-22 14:11:23', '2022-01-22 17:21:48', NULL),
+(8, 'Crypto', 'crypto', NULL, '[]', NULL, 3, '2022-01-22 14:11:57', '2022-01-22 17:21:41', NULL),
+(9, 'Retail', 'retail', NULL, '[]', NULL, 3, '2022-01-22 14:13:02', '2022-01-22 17:21:33', NULL),
+(10, 'Education', 'education', NULL, '[]', NULL, 3, '2022-01-22 14:13:10', '2022-01-22 17:21:24', NULL),
+(11, 'Landing Page', 'landing-page', NULL, '[]', NULL, 3, '2022-01-22 17:23:21', '2022-01-22 17:23:21', NULL),
+(12, 'Lifestyle', 'lifestyle', NULL, '[]', NULL, 3, '2022-01-22 17:24:46', '2022-01-22 17:24:46', NULL),
+(13, 'Dashboard', 'dashboard', NULL, '[]', NULL, 3, '2022-01-22 18:29:21', '2022-01-22 18:29:21', NULL),
+(14, 'Rental', 'rental', NULL, '[]', NULL, 3, '2022-01-22 18:29:39', '2022-01-22 18:29:39', NULL),
+(15, 'Business', 'business', NULL, '[]', NULL, 3, '2022-01-22 18:29:55', '2022-01-22 18:29:55', NULL),
+(16, 'modern', 'modern', NULL, '[]', NULL, 3, '2022-01-23 10:21:54', '2022-01-23 10:21:54', NULL);

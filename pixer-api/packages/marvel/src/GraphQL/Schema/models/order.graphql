@@ -1,0 +1,192 @@
+extend type Query {
+    orders(
+        tracking_number: String @where(operator: "LIKE")
+        orderBy: String
+        sortedBy: String
+        customer_id: ID @eq
+        shop_id: ID @eq
+    ): [Order!]!
+        @paginate(
+            builder: "Marvel\\GraphQL\\Queries\\OrderQuery@fetchOrders"
+            defaultCount: 10
+        )
+    order(id: ID, tracking_number: String): Order
+        @field(
+            resolver: "Marvel\\GraphQL\\Queries\\OrderQuery@fetchSingleOrder"
+        )
+}
+
+type PaymentIntentInfo {
+    client_secret: String
+    is_redirect: Boolean
+    payment_id: String
+    redirect_url: String
+    amount: String
+    currency: String
+}
+
+type Order {
+    id: ID!
+    tracking_number: String!
+    customer_id: ID
+    customer_contact: String!
+    customer_name: String
+    customer: User @belongsTo
+    language: String
+    refund: Refund @hasOne
+    wallet_point: WalletPoint @hasOne
+    parent_order: Order @belongsTo
+    children: [Order] @hasMany
+    order_status: String
+    payment_status: String
+    payment_intent: PaymentIntent
+    amount: Float!
+    sales_tax: Float!
+    total: Float!
+    paid_total: Float!
+    payment_id: String
+    payment_gateway: PaymentGatewayType!
+    coupon: Coupon @belongsTo
+    shop: Shop @belongsTo
+    discount: Float
+    delivery_fee: Float
+    delivery_time: String
+    products: [Product] @belongsToMany
+    created_at: DateTime
+    updated_at: DateTime
+    billing_address: UserAddress
+    shipping_address: UserAddress
+}
+
+type WalletPoint {
+    id: ID!
+    amount: Float
+}
+
+input SyncProductOrderBelongsToMany {
+    sync: [ConnectProductOrderPivot!]
+}
+
+input ConnectCustomerBelongsTo {
+    connect: ID! @rules(apply: ["exists:users,id"])
+}
+input ConnectCouponBelongsTo {
+    connect: ID! @rules(apply: ["exists:coupons,id"])
+}
+
+input UpdateOrderInput {
+    id: ID!
+    order_status: String!
+    products: SyncProductOrderBelongsToMany
+    language: String
+    coupon: ConnectCouponBelongsTo
+    shop_id: ID @rules(apply: ["exists:shops,id"])
+    delivery_time: String
+    billing_address: UserAddressInput
+    shipping_address: UserAddressInput
+}
+
+input CardInput {
+    number: String!
+    expiryMonth: String!
+    expiryYear: String!
+    cvv: String!
+    email: String
+}
+
+input CreateOrderInput {
+    customer_contact: String! @rules(apply: ["required"])
+    products: [ConnectProductOrderPivot!]! @rules(apply: ["required"])
+    amount: Float! @rules(apply: ["required"])
+    sales_tax: Float!
+    total: Float! @rules(apply: ["required"])
+    paid_total: Float! @rules(apply: ["required"])
+    payment_id: String
+    payment_gateway: PaymentGatewayType! @rules(apply: ["required"])
+    coupon_id: ID
+    shop_id: ID
+    customer_id: ID
+    discount: Float
+    use_wallet_points: Boolean
+    delivery_fee: Float
+    delivery_time: String
+    customer_name: String
+    card: CardInput
+    token: String
+    billing_address: UserAddressInput!
+    shipping_address: UserAddressInput!
+    language: String
+}
+
+input generateOrderExportUrlInput {
+    shop_id: ID
+        @rules(
+            apply: []
+            messages: { exists: "Sorry! The file doesn't exists." }
+        )
+}
+
+input TranslatedLanguage {
+    subtotal: String
+    discount: String
+    tax: String
+    delivery_fee: String
+    total: String
+    products: String
+    quantity: String
+    invoice_no: String
+    date: String
+}
+
+input GenerateInvoiceDownloadUrlInput {
+    order_id: String!
+    translated_languages: TranslatedLanguage
+    is_rtl: Boolean!
+    language: String!
+}
+
+input PaymentInput {
+    products: [ConnectProductOrderPivot!]! @rules(apply: ["required"])
+    sales_tax: Float!
+    payment_gateway: PaymentGatewayType! @rules(apply: ["required"])
+    coupon_id: ID
+    shop_id: ID
+    customer_id: ID
+    language: String
+    discount: Float
+    use_wallet_points: Boolean
+    delivery_fee: Float
+    delivery_time: String
+    billing_address: UserAddressInput!
+    shipping_address: UserAddressInput!
+}
+type PaymentData {
+    id: String
+    currency: String
+    amount: Float
+}
+type PaymentResponse {
+    order: PaymentData
+    redirect_url: String
+    is_redirect: Boolean!
+    payment_id: String
+    client_secret: String
+}
+
+input CreateOrderPaymentInput {
+    tracking_number: String
+}
+
+extend type Mutation {
+    deleteOrder(id: ID!): Order @delete @can(ability: "super_admin")
+    createOrder(input: CreateOrderInput! @spread): Order
+        @field(resolver: "OrderMutator@store")
+    createOrderPayment(input: CreateOrderPaymentInput! @spread): Boolean
+        @field(resolver: "OrderMutator@createOrderPayment")
+    updateOrder(input: UpdateOrderInput! @spread): Order
+        @field(resolver: "OrderMutator@update")
+    generateOrderExportUrl(input: generateOrderExportUrlInput! @spread): String
+        @field(resolver: "AuthMutator@generateOrderExportUrl")
+    generateInvoiceDownloadUrl(input: GenerateInvoiceDownloadUrlInput! @spread): String
+        @field(resolver: "OrderMutator@generateInvoiceDownloadUrl")
+}

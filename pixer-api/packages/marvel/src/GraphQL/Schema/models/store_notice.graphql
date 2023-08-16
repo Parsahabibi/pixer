@@ -1,0 +1,101 @@
+extend type Query {
+    storeNotices(
+        text: String @where(operator: "like", key: "notice")
+        shop_id: ID
+        language: String
+        id: ID @where(operator: "=", key: "id")
+        orderBy: String
+        sortedBy: String
+    ): [StoreNotice]
+        @paginate(
+            builder: "Marvel\\GraphQL\\Queries\\StoreNoticeQuery@fetchStoreNotices"
+            defaultCount: 15
+        )
+    storeNoticeTypes(role: String): [[String]!]!
+        @field(resolver: "StoreNoticeQuery@getStoreNoticeType")
+    storeNoticeReceiver(type: String): [UserToNotify!]!
+        @field(resolver: "StoreNoticeQuery@getUsersToNotify")
+    storeNotice(id: ID! @eq, notice: String, language: String): StoreNotice
+        @find
+}
+
+type UserToNotify {
+    id: ID!
+    name: String
+    slug: String
+}
+
+type StoreNotice {
+    id: ID!
+    priority: String!
+    notice: String!
+    description: String
+    effective_from: String!
+    expired_at: String!
+    type: String!
+    created_by: ID
+    updated_by: ID
+    created_at: DateTime
+    updated_at: DateTime
+    is_read: Boolean
+    creator_role: String
+    creator: User @belongsTo
+    users: [User] @belongsToMany
+    shops: [Shop] @belongsToMany
+    read_status: [StoreNoticeRead!] @belongsToMany
+}
+
+type StoreNoticeRead {
+    id: ID!
+    name: String
+    email: String
+    pivot: StoreNoticeUserPivot
+}
+type StoreNoticeUserPivot {
+    store_notice_id: ID
+    user_id: ID
+    is_read: Boolean
+}
+
+input CreateStoreNoticeInput {
+    priority: String!
+    notice: String!
+    description: String
+    effective_from: String
+    expired_at: String!
+    type: String!
+    received_by: [Int]
+}
+input UpdateStoreNoticeInput {
+    id: ID!
+    priority: String!
+    notice: String!
+    description: String
+    effective_from: String
+    expired_at: String!
+    type: String!
+    received_by: [Int]
+}
+input ReadSingleNoticeInput {
+    id: ID!
+}
+input ReadAllNoticeInput {
+    notices: [Int!]!
+}
+type Success {
+    success: Boolean!
+}
+
+extend type Mutation {
+    createStoreNotice(input: CreateStoreNoticeInput! @spread): StoreNotice
+        @field(resolver: "StoreNoticeMutator@createStoreNotice")
+        @can(ability: "store_owner")
+    updateStoreNotice(input: UpdateStoreNoticeInput! @spread): StoreNotice
+        @field(resolver: "StoreNoticeMutator@updateStoreNotice")
+        @can(ability: "store_owner")
+    readNotice(input: ReadSingleNoticeInput! @spread): StoreNoticeUserPivot
+        @field(resolver: "StoreNoticeMutator@readNotice")
+    readAllNotice(input: ReadAllNoticeInput! @spread): [StoreNoticeUserPivot]!
+        @field(resolver: "StoreNoticeMutator@readAllNotice")
+    deleteStoreNotice(id: ID!): StoreNotice @delete @can(ability: "store_owner")
+}

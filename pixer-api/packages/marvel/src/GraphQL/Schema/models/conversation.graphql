@@ -1,0 +1,33 @@
+extend type Query {
+    conversations(
+        search: String
+        orderBy: String
+        sortedBy: String
+    ): [Conversation]
+        @paginate(
+            builder: "Marvel\\GraphQL\\Queries\\ConversationQuery@fetchConversations"
+            defaultCount: 15
+        )
+    conversation(id: ID @eq): Conversation @find
+}
+
+type Conversation {
+    id: ID!
+    user_id: ID!
+    user: User @belongsTo
+    shop_id: ID!
+    shop: Shop @belongsTo
+    unseen: Int
+    latest_message: Message
+    created_at: String
+    updated_at: String
+}
+
+input CreateConversationInput {
+    shop_id: ID! @rules(apply: ["required", "exists:shops,id"])
+}
+
+extend type Mutation {
+    createConversation(input: CreateConversationInput! @spread): Conversation
+        @field(resolver: "ConversationMutator@store")
+}

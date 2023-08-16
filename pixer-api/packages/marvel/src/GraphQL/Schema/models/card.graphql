@@ -1,0 +1,36 @@
+extend type Query {
+    cards: [Card]
+        @field(resolver: "Marvel\\GraphQL\\Queries\\CardQuery@fetchCards")
+        @can(ability: "customer", model: "Marvel\\Database\\Models\\PaymentGateway")
+}
+
+type Card {
+    id: ID
+    method_key: String!
+    payment_gateway_id: ID
+    default_card: Boolean
+    fingerprint: String!
+    owner_name: String
+    network: String
+    type: String
+    last4: String
+    expires: String
+    origin: String
+    verification_check: String
+}
+
+input AddNewCardInput {
+    method_key: String!
+    default_card: Boolean
+}
+
+extend type Mutation {
+    addNewCard(input: AddNewCardInput! @spread): Card
+        @field(resolver: "CardMutator@store")
+    deleteCard(id: ID!): Boolean
+        @field(resolver: "CardMutator@delete")
+        @can(ability: "customer", model: "Marvel\\Database\\Models\\PaymentGateway")
+    setDefaultPaymentMethod(method_id: ID!): Card
+        @field(resolver: "CardMutator@setDefaultPaymentMethod")
+        @can(ability: "customer", model: "Marvel\\Database\\Models\\PaymentGateway")
+}

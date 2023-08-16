@@ -1,0 +1,42 @@
+.progress_container {
+  @apply flex items-center w-full mb-5 shrink-0 last:mb-0;
+}
+
+.progress_container:only-child {
+  @apply md:mx-auto;
+}
+
+.bar {
+  @apply absolute -top-1/2 w-0.5 ltr:left-1/2 ltr:-ml-px rtl:right-1/2 rtl:mr-px;
+}
+
+.progress_container:only-child .bar {
+  @apply top-1/2 hidden h-full w-0.5;
+}
+
+.progress_container:first-child .bar {
+  @apply top-2/3 h-full w-0.5;
+}
+
+.progress_container:last-child .bar {
+  @apply -top-1/2 h-full w-0.5;
+}
+
+.progress_wrapper {
+  @apply relative flex items-center justify-center shrink-0;
+}
+
+.checked {
+}
+
+.progress_wrapper.checked .bar {
+  /* @apply bg-accent; */
+}
+
+.status_wrapper {
+  @apply z-10 flex items-center justify-center text-sm font-medium border rounded-full h-9 w-9;
+}
+
+/* .progress_wrapper.checked .status_wrapper {
+  @apply dark:text-light;
+} */

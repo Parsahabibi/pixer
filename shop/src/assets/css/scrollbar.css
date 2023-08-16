@@ -1,0 +1,147 @@
+/* Custom scrollbar design starts from here */
+.os-theme-thin > .os-scrollbar-vertical {
+  bottom: 14px;
+  width: 14px;
+  padding: 6px 0;
+}
+
+.os-theme-thin > .os-scrollbar > .os-scrollbar-track {
+  background: transparent;
+}
+
+.os-theme-thin > .os-scrollbar-horizontal > .os-scrollbar-track:before,
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle {
+  width: 100%;
+  min-height: 15px;
+}
+.os-theme-thin .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle,
+.os-theme-thin .os-scrollbar .os-scrollbar-handle:active {
+  background-color: transparent;
+}
+
+.os-theme-thin > .os-scrollbar-vertical > .os-scrollbar-track:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 50%;
+  margin-left: -1px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.os-theme-thin
+  > .os-scrollbar
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:hover:before,
+.os-theme-thin
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle.active:before {
+  width: 2px;
+  margin-left: -1px;
+  background: #666;
+}
+
+.os-theme-thin.os-host-transition
+  > .os-scrollbar-vertical
+  > .os-scrollbar-track
+  > .os-scrollbar-handle:before {
+  -webkit-transition: width 0.3s, margin-left 0.3s, background 0.2s;
+  transition: width 0.3s, margin-left 0.3s, background 0.2s;
+}
+
+/* ScrollBar Height Calc */
+.cart-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 160px);
+}
+@media (min-width: 768px) {
+  .cart-scrollbar {
+    max-height: calc(100vh - 188px);
+  }
+}
+
+.menu-scrollbar {
+  max-height: calc(100vh - 78px);
+  -webkit-overflow-scrolling: touch;
+}
+
+.os-padding {
+  box-sizing: inherit;
+  direction: inherit;
+  position: absolute;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: auto !important;
+  height: auto !important;
+  z-index: 0;
+}
+.os-scrollbar-vertical {
+  top: 0;
+  right: 0;
+}
+.os-scrollbar {
+  pointer-events: none;
+}
+.os-scrollbar,
+.os-scrollbar-corner {
+  position: absolute;
+  opacity: 1;
+  z-index: 1;
+}
+.os-viewport {
+  direction: inherit !important;
+  box-sizing: inherit !important;
+  resize: none !important;
+  outline: none !important;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
