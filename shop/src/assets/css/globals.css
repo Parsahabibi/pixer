@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'IranSans';
+  src: url('../../../public/Fonts/IRAN-Sans.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  font-family: 'IranSans';
+}
 @layer base {
   html {
     @apply text-dark-600;
