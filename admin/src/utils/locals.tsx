@@ -10,10 +10,10 @@ import Image from "next/image";
 const localeRTLList = ['ar', 'he' , 'fa' ];
 export function useIsRTL() {
   const { locale } = useRouter();
-  console.log(locale)
 
   if (locale && localeRTLList.includes(locale)) {
     return { isRTL: true, alignLeft: 'right', alignRight: 'left' };
+
   }
   return { isRTL: false, alignLeft: 'left', alignRight: 'right' };
 }

@@ -16,7 +16,6 @@ import Image from "next/image";
 
 const localeRTLList = ['ar', 'he' , 'fa'];
 
-console.log(localeRTLList)
 
 export function useIsRTL() {
   const { locale } = useRouter();
