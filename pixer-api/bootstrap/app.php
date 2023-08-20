@@ -40,7 +40,7 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
-
+//$app->register(BeyondCode\ErdGenerator\ErdGeneratorServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

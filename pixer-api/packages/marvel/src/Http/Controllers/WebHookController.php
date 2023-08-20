@@ -52,4 +52,8 @@ class WebHookController extends CoreController
     {
         return Payment::handleWebHooks($request);
     }
+    public function zarinpal(Request $request)
+    {
+        return Payment::handleWebHooks($request);
+    }
 }

@@ -410,6 +410,9 @@ class OrderController extends CoreController
                 case PaymentGatewayType::BITPAY:
                     $this->bitpay($order, $request, $this->settings);
                     break;
+                case PaymentGatewayType::ZARINPAL:
+                    $this->zarinpal($order,$request,$this->settings);
+                    break;
             }
         } catch (MarvelException $e) {
             throw new MarvelException(SOMETHING_WENT_WRONG, $e->getMessage());
