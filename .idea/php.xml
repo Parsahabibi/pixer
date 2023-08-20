@@ -205,6 +205,11 @@
       <path value="$PROJECT_DIR$/pixer-api/vendor/stevebauman/purify" />
       <path value="$PROJECT_DIR$/pixer-api/vendor/haydenpierce/class-finder" />
       <path value="$PROJECT_DIR$/pixer-api/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/phpdocumentor/graphviz" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/beyondcode/laravel-er-diagram-generator" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/pishran/zarinpal" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

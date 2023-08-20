@@ -202,6 +202,7 @@
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/webonyx/graphql-php" />
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/xendit/xendit-php" />
+      <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/pishran/zarinpal" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
