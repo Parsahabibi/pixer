@@ -149,6 +149,15 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
       width: 100,
       height: 52,
     },
+    ZARINPAL: {
+      name: 'Zarinpal',
+      value: PaymentGateway.ZARINPAL,
+      icon: '/payment-gateways/zarinpal.png',
+      iconDark: '/payment-gateways/zarinpal.png',
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
   };
 
   useEffect(() => {
