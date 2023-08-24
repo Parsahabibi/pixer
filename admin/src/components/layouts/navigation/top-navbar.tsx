@@ -14,6 +14,7 @@ import {
 import LanguageSwitcher from './language-switer';
 import { Config } from '@/config';
 import {useRouter} from "next/router";
+import Image from "next/image";
 
 const Navbar = () => {
 	const { t } = useTranslation();
@@ -42,7 +43,8 @@ const Navbar = () => {
         </motion.button>
 
         <div className="ms-5 me-auto hidden md:flex">
-          <Logo />
+          {/*<Logo />*/}
+          <Image className='' src={'/./image/Logo.png'} alt={''} width={150} height={150} />
         </div>
 
         <div className="space-s-8 flex items-center">

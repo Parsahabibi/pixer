@@ -20,6 +20,7 @@ import { useModalAction } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 import { useTranslation } from 'next-i18next';
+import Image from "next/image";
 
 
 const AuthorizedMenuItems = [
@@ -156,7 +157,10 @@ export default function Header({
             className="hidden sm:flex"
           />
         )}
-        <Logo />
+        {/*<Logo />*/}
+        <Image className='hidden dark:block' src={'/./icons/lightLogo.png'} alt={''} width={100} height={100} />
+
+        <Image className='block dark:hidden' src={'/./icons/Logo.png'} alt={''} width={100} height={100} />
       </div>
       <div className="relative flex items-center gap-5 pr-0.5 xs:gap-6 sm:gap-7">
         <SearchButton className="hidden sm:flex" />

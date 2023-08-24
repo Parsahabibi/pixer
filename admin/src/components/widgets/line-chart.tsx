@@ -65,7 +65,7 @@ const LineChart = ({
           style: {
             color: '#161F6A',
             fontSize: '14px',
-            fontFamily: "'Lato', sans-serif",
+            fontFamily: "'IranSans', sans-serif",
           },
         },
       },

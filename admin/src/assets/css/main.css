@@ -8,8 +8,8 @@
 	font-weight: normal;
 	font-style: normal;
 }
-* {
-	font-family: 'IranSans';
+* , table  , th , tr , td  , button , a{
+	font-family: 'IranSans'!important;
 }
 
 @layer base {
