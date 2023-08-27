@@ -44,7 +44,7 @@ const Navbar = () => {
 
         <div className="ms-5 me-auto hidden md:flex">
           {/*<Logo />*/}
-          <Image className='' src={'/./image/Logo.png'} alt={''} width={150} height={150} />
+          <Image className='' src={'/./image/Logo.png'} alt={''} width={150} height={100} />
         </div>
 
         <div className="space-s-8 flex items-center">

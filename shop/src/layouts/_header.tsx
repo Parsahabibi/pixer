@@ -158,9 +158,9 @@ export default function Header({
           />
         )}
         {/*<Logo />*/}
-        <Image className='hidden dark:block' src={'/./icons/lightLogo.png'} alt={''} width={100} height={100} />
+        <Image className='hidden dark:block' src={'/./icons/lightLogo.png'} alt={''} width={125} height={100} />
 
-        <Image className='block dark:hidden' src={'/./icons/Logo.png'} alt={''} width={100} height={100} />
+        <Image className='block dark:hidden' src={'/./icons/Logo.png'} alt={''} width={125} height={100} />
       </div>
       <div className="relative flex items-center gap-5 pr-0.5 xs:gap-6 sm:gap-7">
         <SearchButton className="hidden sm:flex" />

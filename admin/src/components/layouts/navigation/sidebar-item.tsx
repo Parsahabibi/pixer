@@ -15,7 +15,7 @@ const SidebarItem = ({ href, icon, label }: any) => {
         iconName: icon,
         className: 'w-5 h-5 me-4',
       })}
-      <span onClick={() => closeSidebar()}>{label}</span>
+      <span style={{fontSize:'14px'}} onClick={() => closeSidebar()}>{label}</span>
     </Link>
   );
 };
