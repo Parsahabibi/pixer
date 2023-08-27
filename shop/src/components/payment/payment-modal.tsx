@@ -23,6 +23,10 @@ const PAYMENTS_FORM_COMPONENTS: any = {
     component: RazorpayPaymentModal,
     type: 'default',
   },
+  // ZIBAL: {
+  //   component: PaymentModal,
+  //   type: 'default',
+  // },
 };
 
 const PaymentModal = () => {

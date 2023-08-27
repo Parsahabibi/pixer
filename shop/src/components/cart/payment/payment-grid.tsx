@@ -158,6 +158,15 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
       width: 100,
       height: 52,
     },
+    ZIBAL: {
+      name: 'Zibal',
+      value: PaymentGateway.ZIBAL,
+      icon: '/payment-gateways/zarinpal.png',
+      iconDark: '/payment-gateways/zarinpal.png',
+      component: PaymentOnline,
+      width: 50,
+      height: 52,
+    },
   };
 
   useEffect(() => {

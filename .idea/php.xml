@@ -210,6 +210,8 @@
       <path value="$PROJECT_DIR$/pixer-api/vendor/phpdocumentor/graphviz" />
       <path value="$PROJECT_DIR$/pixer-api/vendor/beyondcode/laravel-er-diagram-generator" />
       <path value="$PROJECT_DIR$/pixer-api/vendor/pishran/zarinpal" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/shetabit/payment" />
+      <path value="$PROJECT_DIR$/pixer-api/vendor/shetabit/multipay" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

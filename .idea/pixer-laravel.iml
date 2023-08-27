@@ -202,6 +202,8 @@
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/webonyx/graphql-php" />
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/xendit/xendit-php" />
       <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/pishran/zarinpal" />
+      <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/shetabit/multipay" />
+      <excludeFolder url="file://$MODULE_DIR$/pixer-api/vendor/shetabit/payment" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
