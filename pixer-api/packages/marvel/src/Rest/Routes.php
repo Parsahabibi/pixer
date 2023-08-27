@@ -85,6 +85,8 @@ Route::post('webhooks/iyzico', [WebHookController::class, 'iyzico']);
 Route::post('webhooks/bitpay', [WebHookController::class, 'bitpay']);
 Route::post('webhooks/coinbase', [WebHookController::class, 'coinbase']);
 Route::post('webhooks/zarinpal',[WebHookController::class,'zarinpal']);
+Route::post('webhooks/zibal',[WebHookController::class,'zibal']);
+
 Route::get('store-notices', [StoreNoticeController::class, 'index'])->name('store-notices.index');
 
 Route::apiResource('products', ProductController::class, [

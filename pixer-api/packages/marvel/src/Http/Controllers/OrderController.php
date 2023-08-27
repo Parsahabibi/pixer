@@ -62,7 +62,7 @@ class OrderController extends CoreController
     /**
      * fetchOrders
      *
-     * @param  mixed $request
+     * @param mixed $request
      * @return object
      */
     public function fetchOrders(Request $request)
@@ -85,14 +85,14 @@ class OrderController extends CoreController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  OrderCreateRequest  $request
+     * @param OrderCreateRequest $request
      * @return LengthAwarePaginator|\Illuminate\Support\Collection|mixed
      * @throws MarvelException
      */
     public function store(OrderCreateRequest $request)
     {
         try {
-            return DB::transaction(fn () => $this->repository->storeOrder($request, $this->settings));
+            return DB::transaction(fn() => $this->repository->storeOrder($request, $this->settings));
         } catch (MarvelException $th) {
             throw new MarvelException(SOMETHING_WENT_WRONG, $th->getMessage());
         }
@@ -101,7 +101,7 @@ class OrderController extends CoreController
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @param $params
      * @return JsonResponse
      * @throws MarvelException
@@ -166,8 +166,8 @@ class OrderController extends CoreController
     /**
      * findByTrackingNumber
      *
-     * @param  mixed $request
-     * @param  mixed $tracking_number
+     * @param mixed $request
+     * @param mixed $tracking_number
      * @return void
      */
     public function findByTrackingNumber(Request $request, $tracking_number)
@@ -245,7 +245,7 @@ class OrderController extends CoreController
 
             $dataArray = [
                 'user_id' => $user->id,
-                'token'   => Str::random(16),
+                'token' => Str::random(16),
                 'payload' => $request->shop_id
             ];
             $newToken = DownloadToken::create($dataArray);
@@ -305,16 +305,16 @@ class OrderController extends CoreController
             $translatedText = $this->formatInvoiceTranslateText($request->translated_text);
 
             $payload = [
-                'user_id'           => $user->id,
-                'order_id'          => intval($request->order_id),
-                'language'          => $language,
-                'translated_text'   => $translatedText,
-                'is_rtl'            => $isRTL
+                'user_id' => $user->id,
+                'order_id' => intval($request->order_id),
+                'language' => $language,
+                'translated_text' => $translatedText,
+                'is_rtl' => $isRTL
             ];
 
             $data = [
                 'user_id' => $user->id,
-                'token'   => Str::random(16),
+                'token' => Str::random(16),
                 'payload' => serialize($payload)
             ];
 
@@ -337,7 +337,7 @@ class OrderController extends CoreController
         $payloads = [];
         try {
             $downloadToken = DownloadToken::where('token', $token)->firstOrFail();
-            $payloads      = unserialize($downloadToken->payload);
+            $payloads = unserialize($downloadToken->payload);
             $downloadToken->delete();
         } catch (MarvelException $e) {
             throw new MarvelException(TOKEN_NOT_FOUND);
@@ -347,11 +347,11 @@ class OrderController extends CoreController
             $settings = Settings::getData($payloads['language']);
             $order = $this->repository->with(['products', 'children.shop', 'wallet_point'])->where('id', $payloads['order_id'])->firstOrFail();
             $invoiceData = [
-                'order'           => $order,
-                'settings'        => $settings,
+                'order' => $order,
+                'settings' => $settings,
                 'translated_text' => $payloads['translated_text'],
-                'is_rtl'          => $payloads['is_rtl'],
-                'language'        => $payloads['language'],
+                'is_rtl' => $payloads['is_rtl'],
+                'language' => $payloads['language'],
             ];
 
             $pdf = PDF::loadView('pdf.order-invoice', $invoiceData);
@@ -365,7 +365,7 @@ class OrderController extends CoreController
     /**
      * submitPayment
      *
-     * @param  mixed  $request
+     * @param mixed $request
      * @return void
      * @throws Exception
      */
@@ -401,6 +401,7 @@ class OrderController extends CoreController
                     break;
                 case PaymentGatewayType::XENDIT:
                     $this->xendit($order, $request, $this->settings);
+                    break;
                 case PaymentGatewayType::IYZICO:
                     $this->iyzico($order, $request, $this->settings);
                     break;
@@ -411,7 +412,10 @@ class OrderController extends CoreController
                     $this->bitpay($order, $request, $this->settings);
                     break;
                 case PaymentGatewayType::ZARINPAL:
-                    $this->zarinpal($order,$request,$this->settings);
+                    $this->zarinpal($order, $request, $this->settings);
+                    break;
+                case PaymentGatewayType::ZIBAL:
+                    $this->zibal($order, $request, $this->settings);
                     break;
             }
         } catch (MarvelException $e) {

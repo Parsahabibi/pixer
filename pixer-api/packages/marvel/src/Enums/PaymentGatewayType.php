@@ -25,4 +25,5 @@ final class PaymentGatewayType extends Enum
     public const COINBASE = 'COINBASE';
     public const BITPAY = 'BITPAY';
     public const ZARINPAL = 'ZARINPAL';
+    public const ZIBAL = 'ZIBAL';
 }
