@@ -72,7 +72,7 @@ export let languageMenu = [
   },
   {
     id: 'fa',
-    name: 'Persian',
+    name: 'فارسی',
     value: 'fa',
     icon: <Image src={'/./icons/Iran.png'} width={20} height={15} alt={''}  />,
     iconMobile: <Image src={'/./icons/Iran.png'} width={20} height={15} alt={''}  />,
