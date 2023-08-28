@@ -29,7 +29,7 @@ const Drawer: FC<SidebarProps> = ({
   onClose,
 }) => {
   const { locale } = useRouter();
-  const dir = locale === 'ar' || locale === 'he' ? 'rtl' : 'ltr';
+  const dir = locale === 'ar' || locale === 'he' || locale === 'fa' ? 'rtl' : 'ltr';
   const ref = useRef() as DivElementRef;
   useEffect(() => {
     if (ref.current) {
@@ -54,7 +54,7 @@ const Drawer: FC<SidebarProps> = ({
             initial="from"
             animate="to"
             exit="from"
-            variants={variant === 'right' ? fadeInRight() : fadeInLeft()}
+            variants={variant === 'right' ? fadeInLeft()  :fadeInRight()}
             className="fixed inset-0 z-50 h-full overflow-hidden"
             dir={dir}
           >

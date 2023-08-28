@@ -11,6 +11,9 @@
 * , table  , th , tr , td  , button , a{
 	font-family: 'IranSans'!important;
 }
+body::-webkit-scrollbar{
+	width: 0;
+}
 
 
 @layer base {

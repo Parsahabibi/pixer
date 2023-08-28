@@ -33,7 +33,7 @@ export default function LanguageSwitcher() {
       {({ open }) => (
         <div className="ms-2 lg:ms-0 relative z-10 xl:w-[130px]">
           <Listbox.Button className="xl:text-heading relative flex h-full w-full cursor-pointer items-center rounded text-[13px] font-semibold focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 xl:h-auto xl:w-full xl:border xl:border-solid xl:border-[#CFD3DA] xl:bg-white xl:py-2 xl:text-sm xl:ltr:pl-3 xl:ltr:pr-7 xl:rtl:pl-7  xl:rtl:pr-3 xl:dark:border-dark-500 xl:dark:bg-transparent">
-            <span className="relative block h-[38px] w-[38px] overflow-hidden rounded-full xl:hidden">
+            <span className="flex justify-center items-center  relative  h-[38px] w-[38px] overflow-hidden rounded-full xl:hidden">
               <span className="relative top-[3px] block">
                 {selectedItem.iconMobile}
               </span>
