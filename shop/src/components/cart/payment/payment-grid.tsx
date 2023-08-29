@@ -161,10 +161,10 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     ZIBAL: {
       name: 'Zibal',
       value: PaymentGateway.ZIBAL,
-      icon: '/payment-gateways/zarinpal.png',
-      iconDark: '/payment-gateways/zarinpal.png',
+      icon: '/payment-gateways/darkZibal.svg',
+      iconDark: '/payment-gateways/whiteZibal.svg',
       component: PaymentOnline,
-      width: 50,
+      width: 100,
       height: 52,
     },
   };

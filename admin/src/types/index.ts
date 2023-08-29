@@ -44,8 +44,7 @@ export enum PaymentGateway {
   BITPAY = 'BITPAY',
   COINBASE = 'COINBASE',
   ZARINPAL = 'ZARINPAL',
-  ZIBAL = 'ZIBAL',
-
+  ZIBAL= 'ZIBAL'
 }
 
 export enum ProductStatus {

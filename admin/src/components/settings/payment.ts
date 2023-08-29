@@ -8,5 +8,4 @@ export const PAYMENT_GATEWAY = [
   { name: 'coinbase', title: 'Coinbase' },
   { name: 'zarinpal', title: 'Zarinpal' },
   { name: 'zibal', title: 'Zibal' },
-
 ];

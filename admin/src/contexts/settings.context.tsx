@@ -4,7 +4,7 @@ export interface State {
 }
 
 const initialState = {
-  siteTitle: 'Pixer',
+  siteTitle: 'ناهیرا مارکت',
   siteSubtitle: '',
   currency: 'USD',
   logo: {
