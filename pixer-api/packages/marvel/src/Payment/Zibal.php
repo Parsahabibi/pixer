@@ -2,6 +2,9 @@
 
 namespace Marvel\Payments;
 
+use Exception;
+use http\Client;
+use Marvel\Database\Models\Order;
 use Marvel\Enums\OrderStatus;
 use Marvel\Enums\PaymentStatus;
 use Marvel\Exceptions\MarvelException;
@@ -9,6 +12,7 @@ use Marvel\Traits\PaymentTrait;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Receipt;
 use Shetabit\Payment\Facade\Payment as ZibalPayment;
+use Illuminate\Support\Facades\Http;
 
 use Shetabit\Multipay\Invoice;
 use Throwable;
@@ -55,13 +59,14 @@ class Zibal extends Base implements PaymentInterface
         }
     }
 
-    public function verify(string $id): mixed
+    public function verify($id): mixed
     {
         try {
+            $receipt = ZibalPayment::amount($this->invoice->getAmount())->transactionId($this->invoice->getTransactionId())->verify();
 
-            $verifyPayment = $this->settings->verifyApiUrl;
-            $verifyUrl = $verifyPayment . $this->invoice->getTransactionId();
-            throw new InvalidPaymentException('a suitable message');
+            // You can show payment referenceId to the user.
+            return $receipt->getReferenceId();
+
 
         } catch (Exception $e) {
             throw new MarvelException(SOMETHING_WENT_WRONG_WITH_PAYMENT);
@@ -70,35 +75,12 @@ class Zibal extends Base implements PaymentInterface
 
     public function handleWebHooks(object $request): void
     {
-//        try {
-//            // Get the transaction ID from the webhook payload
-//            $transactionId = $request->input('transactionId');
-//
-//            $receipt = $this->findReceipt($transactionId);
-//
-//            // Verify the payment status with Zibal API or other means
-//            $isPaymentSuccessful = $this->verifyPayment($receipt);
-//
-//            if ($isPaymentSuccessful) {
-//                // Update the payment and order status accordingly
-//                $orderTrackingNumber = $receipt->getExtra('order_tracking_number');
-//                $order = Order::where('tracking_number', $orderTrackingNumber)->first();
-//
-//                if ($order) {
-//                    $this->updatePaymentOrderStatus($order, OrderStatus::PROCESSING, PaymentStatus::SUCCESS);
-//                }
-//            }
-//        } catch (ReceiptNotFoundException $e) {
-//            // Handle receipt not found
-//        } catch (InvalidPaymentException $e) {
-//            // Handle invalid payment status or other issues
-//        } catch (Exception $e) {
-//            // Handle other exceptions
-//        }
-//
-//        // Respond to the webhook
-//        http_response_code(200);
-//        exit();
+        try {
+
+
+        } catch (Exception $e) {
+            throw new MarvelException(SOMETHING_WENT_WRONG_WITH_PAYMENT);
+        }
 
     }
 
@@ -144,5 +126,4 @@ class Zibal extends Base implements PaymentInterface
         return (object)[];
     }
 
-    // Additional methods specific to Zibal gateway
 }

@@ -13,7 +13,7 @@
         "barryvdh/laravel-dompdf": "2.0.1",
         "bitpay/sdk": "^7.3",
         "doctrine/dbal": "3.6.0",
-        "guzzlehttp/guzzle": "7.5.0",
+        "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "10.1.5",
         "laravel/socialite": "5.6.1",
         "laravel/tinker": "2.8.1",
