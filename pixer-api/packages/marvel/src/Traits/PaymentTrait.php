@@ -102,7 +102,6 @@ trait PaymentTrait
         if(strtoupper($payment_gateway) === PaymentGatewayType::IYZICO){
             $created_intent["ip"] = $request->ip();
         }
-
         return Payment::getIntent($created_intent);
     }
 

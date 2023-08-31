@@ -315,7 +315,7 @@ return [
             'mode' => 'normal', // can be normal, direct
 
             'merchantId' => 'zibal',
-            'callbackUrl' => 'http://localhost:3000/fa/',
+            'callbackUrl' => 'http://localhost/webhooks/zibal',
             'description' => 'payment using zibal',
             'currency' => 'R', //Can be R, T (Rial, Toman)
         ],
